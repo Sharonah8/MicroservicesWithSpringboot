@@ -55,13 +55,22 @@ public class StudentController {
         return new Student(id, firstName,lastName);
     }
 
-    // Spring Boot REST API that handles HTTP POST request
+    // Spring Boot REST API that handles HTTP POST request - creating new resource
     // @PostMapping and @RequestBody annotations
     // http://localhost:8080/students/create
     @PostMapping("/students/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody Student student){
         System.out.println(student.getId());
+        System.out.println(student.getFirstName());
+        System.out.println(student.getLastName());
+        return student;
+    }
+
+    // Spring Boot REST API that handles HTTP PUT Request - update existing resource
+    // http://localhost:8080/students/1/update
+    @PutMapping("students/{id}/update")
+    public Student updateStudent( @RequestBody Student student, @PathVariable("id") int studentId){
         System.out.println(student.getFirstName());
         System.out.println(student.getLastName());
         return student;
